@@ -33,3 +33,19 @@ sourceSets {
 		runtimeClasspath = configurations.portal + runtimeClasspath + configurations.portalTest
 	}
 }
+
+poshiRunner {
+	File poshiPropertiesFile = file("poshi-runner.properties")
+
+	if (poshiPropertiesFile.exists()) {
+		Properties poshiProperties = new Properties()
+
+		poshiPropertiesFile.withInputStream {
+			poshiProperties.load it
+		}
+
+		setPoshiProperties poshiProperties
+	}
+
+	version = "1.0.37"
+}
